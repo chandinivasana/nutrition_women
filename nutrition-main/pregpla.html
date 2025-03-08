@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregnancy Nutrition Plan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        input, select, button {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e65c00;
+        }
+        .plan {
+            margin-top: 20px;
+            text-align: left;
+            padding: 10px;
+            background: #ffe6cc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Pregnancy Nutrition Plan</h2>
+        
+        <label>Enter Your Age:</label>
+        <input type="number" id="age" placeholder="E.g. 28">
+        
+        <label>Enter Your Weight (kg):</label>
+        <input type="number" id="weight" placeholder="E.g. 65">
+        
+        <label>Select Your Trimester:</label>
+        <select id="trimester">
+            <option value="first">First Trimester (0-12 weeks)</option>
+            <option value="second">Second Trimester (13-26 weeks)</option>
+            <option value="third">Third Trimester (27-40 weeks)</option>
+        </select>
+<br>
+        <label>Activity Level:</label>
+        <select id="activity">
+            <option value="sedentary">Sedentary (Minimal exercise)</option>
+            <option value="moderate">Moderate (Light exercise)</option>
+            <option value="active">Active (Regular exercise)</option>
+        </select>
+        <br>
+        <label>Dietary Preference:</label>
+        <select id="diet">
+            <option value="balanced">Balanced Diet</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="high_protein">High Protein</option>
+            <option value="gestational_diabetes">Gestational Diabetes-Friendly</option>
+        </select>
+        
+        <button onclick="generatePlan()">Generate Plan</button>
+
+        <div id="output" class="plan" style="display: none;"></div>
+    </div>
+
+    <script>
+        function generatePlan() {
+            let age = document.getElementById("age").value;
+            let weight = document.getElementById("weight").value;
+            let trimester = document.getElementById("trimester").value;
+            let activity = document.getElementById("activity").value;
+            let diet = document.getElementById("diet").value;
+
+            if (!age || !weight) {
+                alert("Please enter your age and weight!");
+                return;
+            }
+
+            // Adjust calorie intake based on trimester
+            let calories = 2000; // Default for first trimester
+            if (trimester === "second") {
+                calories = 2200;
+            } else if (trimester === "third") {
+                calories = 2400;
+            }
+
+            if (activity === "moderate") {
+                calories += 100;
+            } else if (activity === "active") {
+                calories += 200;
+            }
+
+            let mealPlan = "";
+            if (diet === "balanced") {
+                mealPlan = `
+                    🍳 Breakfast: Scrambled eggs with whole wheat toast + fresh fruit <br>
+                    🥗 Lunch: Grilled chicken, brown rice, and steamed veggies <br>
+                    🍎 Snack: Greek yogurt with honey and almonds <br>
+                    🍲 Dinner: Salmon with quinoa and a fresh salad
+                `;
+            } else if (diet === "vegetarian") {
+                mealPlan = `
+                    🍞 Breakfast: Oatmeal with chia seeds and banana <br>
+                    🥗 Lunch: Lentil soup with whole-grain bread <br>
+                    🍏 Snack: Smoothie with nuts and flaxseeds <br>
+                    🍛 Dinner: Paneer curry with quinoa and veggies
+                `;
+            } else if (diet === "vegan") {
+                mealPlan = `
+                    🥣 Breakfast: Chia pudding with almond milk and berries <br>
+                    🍲 Lunch: Lentil salad with avocado and quinoa <br>
+                    🌰 Snack: Almond butter on whole wheat toast <br>
+                    🥦 Dinner: Tofu stir-fry with mixed vegetables and brown rice
+                `;
+            } else if (diet === "high_protein") {
+                mealPlan = `
+                    🍳 Breakfast: Boiled eggs with whole wheat toast <br>
+                    🥗 Lunch: Grilled steak with roasted sweet potatoes <br>
+                    🥜 Snack: Protein smoothie with peanut butter <br>
+                    🍲 Dinner: Baked fish with steamed broccoli
+                `;
+            } else if (diet === "gestational_diabetes") {
+                mealPlan = `
+                    🍞 Breakfast: Whole-grain toast with avocado and eggs <br>
+                    🥗 Lunch: Grilled chicken salad with nuts <br>
+                    🍏 Snack: Greek yogurt with walnuts <br>
+                    🍲 Dinner: Stir-fried tofu with quinoa and vegetables
+                `;
+            }
+
+            let hydration = `
+                <p>🥤 <b>Hydration Tip:</b> Drink at least 2.5-3 liters of water daily!</p>
+                <p>🍼 <b>Essential Supplements:</b> Ensure intake of folic acid, iron, and calcium.</p>
+            `;
+
+            let plan = `
+                <h3>Here’s Your Personalized Pregnancy Nutrition Plan:</h3>
+                <p>🔥 <b>Daily Calorie Requirement:</b> ${calories} kcal</p>
+                <p>🍽 <b>Recommended Meals:</b><br>${mealPlan}</p>
+                ${hydration}
+            `;
+
+            document.getElementById("output").innerHTML = plan;
+            document.getElementById("output").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>

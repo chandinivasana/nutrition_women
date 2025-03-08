@@ -1,0 +1,481 @@
+/* General Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    color: #495057;
+    background-color: #ecf0f1;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container Styling */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: #3498db;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+p {
+    margin-bottom: 1.2rem;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Navbar Styling */
+.navbar {
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #007bff;
+}
+
+/* Hero Section Image Slider */
+.bg-hero {
+    position: relative;
+    height: 75vh;
+    overflow: hidden;
+}
+
+.image-slider-hero {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300%;
+    height: 100%;
+    display: flex;
+    animation: heroSlide 18s linear infinite;
+}
+
+.image-slider-hero img {
+    width: calc(100% / 3);
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.image-slider-hero:nth-child(1) {
+    background-image: url('../images/hero3.jpg');
+    animation-delay: 0s;
+}
+
+.image-slider-hero:nth-child(2) {
+    background-image: url('../images/hero2.jpg');
+    animation-delay: 0s;
+}
+
+.image-slider-hero:nth-child(3) {
+    background-image: url('../images/hero3.jpg');
+    animation-delay: 0s;
+}
+
+.slider-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1;
+    padding: 2rem;
+}
+
+.slider-content h1 {
+    color: white;
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.slider-content p {
+    color: white;
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.slider-content .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-size: 1.25rem;
+    padding: 0.75rem 2rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.slider-content .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Keyframes for background sliding transition */
+@keyframes heroSlide {
+    0% {
+        transform: translateX(0%);
+    }
+    27.78% {
+        transform: translateX(0%);
+    }
+    33.33% {
+        transform: translateX(-33.33%);
+    }
+    61.11% {
+        transform: translateX(-33.33%);
+    }
+    66.66% {
+        transform: translateX(-66.66%);
+    }
+    94.44% {
+        transform: translateX(-66.66%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+/* About Section Styling */
+#about {
+    padding: 4rem 0;
+}
+
+#about h2 {
+    font-size: 2.5rem;
+}
+
+/* Image Slider Styles (About Section) */
+.image-slider-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 300px;
+}
+
+.image-slider {
+    display: flex;
+    width: 300%;
+    animation: slide 15s infinite;
+}
+
+.slider-image {
+    width: calc(100% / 3);
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Keyframes for the sliding animation */
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    30% {
+        transform: translateX(0);
+    }
+    33.33% {
+        transform: translateX(-33.33%);
+    }
+    63.33% {
+        transform: translateX(-33.33%);
+    }
+    66.66% {
+        transform: translateX(-66.66%);
+    }
+    96.66% {
+        transform: translateX(-66.66%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Life Stages Section Styling */
+#life-stages {
+    background-color: #f8f9fa;
+    padding: 4rem 0;
+}
+
+#life-stages h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.life-stage-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.life-stage-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.life-stage-card h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+.life-stage-card p {
+    font-size: 1rem;
+}
+
+/* Nutrition Plans Section Styling */
+#nutrition-plans {
+    padding: 4rem 0;
+}
+
+#nutrition-plans h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.nutrition-plan-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nutrition-plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nutrition-plan-card h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+.nutrition-plan-card p {
+    font-size: 1rem;
+}
+
+/* Community Section Styling */
+#community {
+    background-color: #f8f9fa;
+    padding: 4rem 0;
+}
+
+#community h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#community .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#community .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#community .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+#community .card-text {
+    font-size: 1rem;
+}
+
+/* Resources Section Styling */
+#resources {
+    padding: 4rem 0;
+}
+
+#resources h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#resources .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#resources .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#resources .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+#resources .card-text {
+    font-size: 1rem;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+footer h5 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+footer p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #ddd;
+    text-decoration: underline;
+}
+
+/* Utilities */
+.py-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+/* Life Stage Specific Styles */
+.adolescence-section,
+.pregnancy-section,
+.menopause-section {
+    padding: 40px;
+}
+
+/*Add Adolescence specific css*/
+.adolescence-section {
+    background-color: #f9f9f9;
+}
+
+.content-box {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.key-nutrients ul, .healthy-habits ul, .parent-tips ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.key-nutrients li, .healthy-habits li, .parent-tips li {
+    margin-bottom: 8px;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Login/Register Page Styles */
+.login-section {
+    padding: 30px;
+}
+
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .bg-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .bg-hero p {
+        font-size: 1rem;
+    }
+}
+
+/* Chatbot Icon */
+.chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 100; /* Ensure it's above other elements */
+}
+
+.chatbot-icon:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+.chatbot-icon a {
+    color: white;
+    text-decoration: none;
+}

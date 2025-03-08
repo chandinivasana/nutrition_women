@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Meal Planner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body { font-family: 'Arial', sans-serif; background-color: #f8f9fa; color: #343a40; }
+        .container { max-width: 960px; margin: 20px auto; background-color: #fff; padding: 30px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 8px; }
+        h2 { color: #007bff; margin-bottom: 25px; text-align: center; }
+        label { margin-top: 15px; margin-bottom: 5px; display: block; font-weight: 500; }
+        input, select { margin-bottom: 15px; padding: 12px; border: 1px solid #ced4da; border-radius: 4px; width: 100%; box-sizing: border-box; font-size: 1rem; }
+        select { cursor: pointer; }
+        button { margin-top: 20px; padding: 12px 24px; border: none; border-radius: 5px; background-color: #007bff; color: #fff; cursor: pointer; transition: background-color 0.3s ease; width: 100%; font-size: 1.1rem; }
+        button:hover { background-color: #0056b3; }
+        .meal { border: 1px solid #ddd; padding: 20px; margin: 15px; display: inline-block; width: calc(50% - 30px); box-sizing: border-box; vertical-align: top; border-radius: 8px; background-color: #f9f9f9; }
+        .meal h3 { color: #28a745; margin-bottom: 10px; }
+        .meal p { margin: 8px 0; }
+        img { width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; }
+        #plan-results { margin-top: 30px; text-align: center; }
+        #plan-results::after { content: ""; display: table; clear: both; }
+        @media (max-width: 768px) { .meal { width: calc(100% - 30px); } } /* Responsive adjustments */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Personalized Meal Planner</h2>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <label for="age">Age:</label>
+                <input type="number" id="age" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" class="form-control">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="activity">Activity Level:</label>
+                <select id="activity" class="form-control">
+                    <option value="sedentary">Sedentary</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="active">Active</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <label for="diet">Dietary Preference:</label>
+                <select id="diet" class="form-control">
+                    <option value="Vegan">Vegan</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                    <option value="Keto">Keto</option>
+                    <option value="Paleo">Paleo</option>
+                    <option value="Gluten-Free">Gluten-Free</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="allergy">Allergies:</label>
+                <select id="allergy" class="form-control">
+                    <option value="None">None</option>
+                    <option value="Nut-Free">Nut-Free</option>
+                    <option value="Dairy-Free">Dairy-Free</option>
+                    <option value="Gluten-Free">Gluten-Free</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <label for="goal">Health Goal:</label>
+                <select id="goal" class="form-control">
+                    <option value="Weight Loss">Weight Loss</option>
+                    <option value="Muscle Gain">Muscle Gain</option>
+                    <option value="General Health">General Health</option>
+                    <option value="Hormonal Balance">Hormonal Balance</option>
+                    <option value="Pregnancy">Pregnancy</option>
+                </select>
+            </div>
+        </div>
+
+        <button onclick="generateMealPlan()" class="btn btn-primary">Get Meal Plan</button>
+
+        <div id="plan-results"></div>
+    </div>
+
+    <script>
+        async function generateMealPlan() {
+            const age = document.getElementById("age").value;
+            const weight = document.getElementById("weight").value;
+            const height = document.getElementById("height").value;
+            const activity = document.getElementById("activity").value;
+            const diet = document.getElementById("diet").value;
+            const allergy = document.getElementById("allergy").value;
+            const goal = document.getElementById("goal").value;
+
+            const apiUrl = "https://api.jsonbin.io/v3/b/67cc0131acd3cb34a8f706d3";
+            
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                const meals = data.record.meals;
+                
+                // Filter meals based on user selections
+                const filteredMeals = meals.filter(meal => 
+                    meal.diet.includes(diet) &&
+                    (allergy === "None" || !meal.allergies.includes(allergy)) &&
+                    meal.healthGoals.includes(goal)
+                );
+
+                if (filteredMeals.length > 0) {
+                    displayMealPlan(filteredMeals);
+                } else {
+                    document.getElementById("plan-results").innerHTML = "<p class='text-danger'>No meals found. Try different options.</p>";
+                }
+            } catch (error) {
+                console.error("Error fetching meal plan:", error);
+                document.getElementById("plan-results").innerHTML = "<p class='text-danger'>Failed to load meal plan. Please try again later.</p>";
+            }
+        }
+
+        function displayMealPlan(meals) {
+            const planResults = document.getElementById("plan-results");
+            planResults.innerHTML = meals.map(meal => `
+                <div class="meal">
+                    <h3>${meal.title}</h3>
+                    <img src="${meal.image}" alt="${meal.title}" class="img-fluid">
+                    <p><strong>Calories:</strong> ${meal.calories} kcal</p>
+                    <p><strong>Protein:</strong> ${meal.protein} g</p>
+                    <p><strong>Carbs:</strong> ${meal.carbs} g</p>
+                    <p><strong>Fat:</strong> ${meal.fat} g</p>
+                </div>
+            `).join("");
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

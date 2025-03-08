@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Adolescence Nutrition Plan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        input, select, button {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .plan {
+            margin-top: 20px;
+            text-align: left;
+            padding: 10px;
+            background: #e9f7ef;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Personalized Adolescence Nutrition Plan</h2>
+        
+        <label>Enter Your Age:</label>
+        <input type="number" id="age" placeholder="E.g. 15">
+        
+        <label>Enter Your Weight (kg):</label>
+        <input type="number" id="weight" placeholder="E.g. 55">
+        
+        <label>Activity Level:</label>
+        <select id="activity">
+            <option value="sedentary">Sedentary (Little to no exercise)</option>
+            <option value="moderate">Moderate (Exercise 3-4 days a week)</option>
+            <option value="active">Active (Exercise daily)</option>
+        </select>
+        <br>
+        <label>Dietary Preference:</label>
+        <select id="diet">
+            <option value="balanced">Balanced Diet</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="high_protein">High Protein</option>
+        </select>
+        
+        <button onclick="generatePlan()">Generate Plan</button>
+
+        <div id="output" class="plan" style="display: none;"></div>
+    </div>
+
+    <script>
+        function generatePlan() {
+            let age = document.getElementById("age").value;
+            let weight = document.getElementById("weight").value;
+            let activity = document.getElementById("activity").value;
+            let diet = document.getElementById("diet").value;
+
+            if (!age || !weight) {
+                alert("Please enter your age and weight!");
+                return;
+            }
+
+            let calories = 1800;  // Default calorie intake
+            if (activity === "moderate") {
+                calories = 2200;
+            } else if (activity === "active") {
+                calories = 2500;
+            }
+
+            let mealPlan = "";
+            if (diet === "balanced") {
+                mealPlan = `
+                    🍳 Breakfast: Scrambled eggs with whole wheat toast + a banana <br>
+                    🥗 Lunch: Grilled chicken, brown rice, and steamed veggies <br>
+                    🥑 Snack: Greek yogurt with honey and nuts <br>
+                    🍲 Dinner: Salmon, quinoa, and a fresh salad
+                `;
+            } else if (diet === "vegetarian") {
+                mealPlan = `
+                    🥞 Breakfast: Oatmeal with almonds and fruit <br>
+                    🥙 Lunch: Chickpea salad with whole-grain bread <br>
+                    🍏 Snack: Smoothie with nuts and seeds <br>
+                    🍛 Dinner: Paneer curry with quinoa and veggies
+                `;
+            } else if (diet === "vegan") {
+                mealPlan = `
+                    🍓 Breakfast: Chia pudding with soy milk and berries <br>
+                    🥗 Lunch: Lentil soup with brown rice and spinach <br>
+                    🥜 Snack: Almond butter on whole wheat toast <br>
+                    🍲 Dinner: Tofu stir-fry with mixed vegetables
+                `;
+            } else if (diet === "high_protein") {
+                mealPlan = `
+                    🍳 Breakfast: Scrambled eggs with chicken sausage <br>
+                    🥗 Lunch: Grilled steak with sweet potatoes <br>
+                    🥜 Snack: Protein smoothie with peanut butter <br>
+                    🍲 Dinner: Baked fish with steamed broccoli
+                `;
+            }
+
+            let plan = `
+                <h3>Here’s Your Personalized Nutrition Plan:</h3>
+                <p>🔥 <b>Daily Calorie Requirement:</b> ${calories} kcal</p>
+                <p>🍽 <b>Recommended Meals:</b><br>${mealPlan}</p>
+                <p>🥤 <b>Hydration Tip:</b> Drink at least 2 liters of water daily!</p>
+            `;
+
+            document.getElementById("output").innerHTML = plan;
+            document.getElementById("output").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Nutrition Plan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f8f9; /* Light blue-grey background */
+            color: #495057;
+            line-height: 1.6;
+        }
+
+        .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            max-width: 800px;
+            margin: 50px auto;
+            border: 1px solid #e0e0e0; /* Subtle border */
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: #2c3e50; /* Darker, professional heading color */
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        label {
+            font-weight: 500;
+            display: block;
+            margin-top: 20px;
+            color: #555;
+        }
+
+        input[type="number"],
+        select {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #bdc3c7; /* Light grey border */
+            border-radius: 7px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus,
+        select:focus {
+            border-color: #3498db; /* Blue border on focus */
+            outline: none;
+        }
+
+        .allergies {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .allergies label {
+            margin-bottom: 10px;
+        }
+
+        .allergies input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 30px;
+            width: 100%;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px); /* Slightly lift the button on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .plan {
+            margin-top: 40px;
+            padding: 25px;
+            background: #ffffff;
+            border-radius: 10px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #planContent {
+            white-space: pre-wrap;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .faq,
+        .plans {
+            margin-top: 40px;
+            padding: 25px;
+            background: #ecf0f1; /* Light grey background */
+            border-radius: 10px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq h3,
+        .plans h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .faq-item,
+        .plan-item {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+                margin: 20px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Personalized Nutrition Plan</h2>
+        <p>Create a customized plan tailored to your individual requirements</p>
+        
+        <h3>Please Answer the Following Questions</h3>
+        
+        <label>Enter Your Age:</label>
+        <input type="number" id="age" placeholder="Enter your age">
+        
+        <label>Enter Your Weight (kg):</label>
+        <input type="number" id="weight" placeholder="Enter your weight">
+        
+        <label>Enter Your Height (cm):</label>
+        <input type="number" id="height" placeholder="Enter your height">
+        
+        <label>Activity Level:</label>
+        <select id="activity">
+            <option value="sedentary">Sedentary</option>
+            <option value="lightly_active">Lightly Active</option>
+            <option value="moderately_active">Moderately Active</option>
+            <option value="very_active">Very Active</option>
+        </select>
+        
+        <label>Health Goals:</label>
+        <select id="goal">
+            <option value="weight_loss">Weight Loss</option>
+            <option value="muscle_gain">Muscle Gain</option>
+            <option value="energy_boost">Energy Boost</option>
+        </select>
+        
+        <label>Dietary Preferences:</label>
+        <select id="diet">
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="keto">Keto</option>
+            <option value="paleo">Paleo</option>
+        </select>
+        
+        <label>Allergies:</label>
+        <div class="allergies">
+            <label><input type="checkbox" name="allergy" value="gluten"> Gluten</label>
+            <label><input type="checkbox" name="allergy" value="nuts"> Nuts</label>
+            <label><input type="checkbox" name="allergy" value="dairy"> Dairy</label>
+            <label><input type="checkbox" name="allergy" value="seafood"> Seafood</label>
+        </div>
+
+        
+        <button onclick="generatePlan()">Create My Plan</button>
+
+        <div class="plan" id="planResult">
+            <h3>Your Personalized Nutrition Plan</h3>
+            <p id="planContent">Fill in the details and click the button to generate your plan.</p>
+        </div>
+
+        <div class="faq">
+            <h3>Common Questions</h3>
+            <div class="faq-item">
+                <strong>1. How can personalized nutrition benefit me?</strong>
+                <p>It helps optimize your diet based on your body's needs, improving overall health and achieving specific goals.</p>
+            </div>
+            <div class="faq-item">
+                <strong>2. What if I have multiple dietary restrictions?</strong>
+                <p>Your plan will be customized to exclude allergens and still provide balanced nutrition.</p>
+            </div>
+            <div class="faq-item">
+                <strong>3. Can this plan work with my busy schedule?</strong>
+                <p>Yes! Meal options will be tailored to fit your daily routine and time availability.</p>
+            </div>
+            <div class="faq-item">
+                <strong>4. How soon can I see results?</strong>
+                <p>Results vary, but consistent healthy eating can show benefits in a few weeks.</p>
+            </div>
+            <div class="faq-item">
+                <strong>5. Do I need to take supplements?</strong>
+                <p>Not necessarily. A well-balanced diet should provide all necessary nutrients, but a professional can guide you if needed.</p>
+            </div>
+        </div>
+
+        <div class="plans">
+            <h3>Common Nutrition Plans</h3>
+            <div class="plan-item">
+                <strong>1. Balanced Diet Plan</strong>
+                <p>Includes all major food groups in appropriate portions to maintain a healthy lifestyle.</p>
+            </div>
+            <div class="plan-item">
+                <strong>2. Low-Carb Diet</strong>
+                <p>Reduces carb intake while increasing healthy fats and proteins for weight management.</p>
+            </div>
+            <div class="plan-item">
+                <strong>3. Mediterranean Diet</strong>
+                <p>Emphasizes whole grains, healthy fats, and lean proteins for heart health.</p>
+            </div>
+            <div class="plan-item">
+                <strong>4. High-Protein Diet</strong>
+                <p>Focuses on protein-rich foods for muscle building and satiety.</p>
+            </div>
+            <div class="plan-item">
+                <strong>5. Plant-Based Diet</strong>
+                <p>Relies on fruits, vegetables, legumes, and whole grains while minimizing animal products.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generatePlan() {
+            let age = document.getElementById("age").value;
+            let weight = document.getElementById("weight").value;
+            let height = document.getElementById("height").value;
+            let activity = document.getElementById("activity").value;
+            let goal = document.getElementById("goal").value;
+            let diet = document.getElementById("diet").value;
+            let allergies = Array.from(document.querySelectorAll('input[name="allergy"]:checked')).map(el => el.value);
+            
+            let dietPlan = "Personalized Nutrition Plan:\n\n";
+            dietPlan += `Age: ${age}, Weight: ${weight}kg, Height: ${height}cm\n`;
+            dietPlan += `Activity Level: ${activity}\nHealth Goal: ${goal}\nDietary Preference: ${diet}\n\n`;
+            
+            // Define Base Food Lists
+            let proteinSources = ["Chicken", "Tofu", "Lentils", "Eggs", "Greek Yogurt"];
+            let fruits = ["Apples", "Bananas", "Berries", "Oranges", "Pears"];
+            let vegetables = ["Broccoli", "Spinach", "Carrots", "Bell Peppers", "Sweet Potatoes"];
+            let grains = ["Quinoa", "Brown Rice", "Oats", "Whole Wheat Bread", "Corn"];
+            let healthyFats = ["Avocado", "Olive Oil", "Nuts", "Seeds", "Fatty Fish (Salmon)"];
+
+            // Adjust Protein Sources Based on Diet
+            if (diet === "vegan") {
+                proteinSources = ["Tofu", "Lentils", "Chickpeas", "Edamame", "Tempeh"];
+            } else if (diet === "vegetarian") {
+                proteinSources = ["Lentils", "Eggs", "Greek Yogurt", "Cottage Cheese", "Beans"];
+            }
+
+            // Function to Filter Food Lists based on Allergies
+            function filterFoodList(foodList, allergy) {
+                switch (allergy) {
+                    case "gluten":
+                        return foodList.filter(item => item !== "Whole Wheat Bread");
+                    case "nuts":
+                        return foodList.filter(item => item !== "Nuts");
+                    case "seafood":
+                        return foodList.filter(item => item !== "Fatty Fish (Salmon)");
+                    case "dairy":
+                        return foodList.filter(item => item !== "Eggs" && item !== "Greek Yogurt");
+                    default:
+                        return foodList;
+                }
+            }
+
+            // Apply Allergy Filters
+            allergies.forEach(allergy => {
+                grains = filterFoodList(grains, allergy);
+                healthyFats = filterFoodList(healthyFats, allergy);
+                proteinSources = filterFoodList(proteinSources, allergy);
+            });
+            
+            dietPlan += "Foods to INCLUDE:\n";
+            dietPlan += `- Protein Sources: ${proteinSources.join(", ")}\n`;
+            dietPlan += `- Fruits: ${fruits.join(", ")}\n`;
+            dietPlan += `- Vegetables: ${vegetables.join(", ")}\n`;
+            dietPlan += `- Grains: ${grains.join(", ")}\n`;
+            dietPlan += `- Healthy Fats: ${healthyFats.join(", ")}\n\n`;
+
+            dietPlan += "Foods to AVOID:\n";
+            allergies.forEach(allergy => {
+                switch (allergy) {
+                    case "gluten":
+                        dietPlan += "- Wheat, barley, rye, and bread products (unless gluten-free).\n";
+                        break;
+                    case "nuts":
+                        dietPlan += "- Peanuts, almonds, cashews, and nut-based oils.\n";
+                        break;
+                    case "dairy":
+                        dietPlan += "- Milk, cheese, yogurt, and butter.\n";
+                        break;
+                    case "seafood":
+                        dietPlan += "- Fish, shellfish, and seaweed-based products.\n";
+                        break;
+                    default:
+                        break;
+                }
+            });
+            document.getElementById("planContent").innerText = dietPlan;
+        }
+    </script>
+</body>
+</html>

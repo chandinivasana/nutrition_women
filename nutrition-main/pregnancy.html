@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitForHer - Pregnancy Nutrition</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .pregnancy-section {
+            padding: 40px;
+            background-color: #f9f9f9;
+        }
+
+        .content-box {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        .key-nutrients ul, .healthy-habits ul, .food-to-avoid ul, .tips-for-healthy-pregnancy ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .key-nutrients li, .healthy-habits li, .food-to-avoid li, .tips-for-healthy-pregnancy li {
+            margin-bottom: 8px;
+        }
+
+        .img-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .image-button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .image-button-container {
+                text-align: left;
+            }
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .custom-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">FitForHer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#life-stages">Life Stages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#nutrition-plans">Nutrition Plans</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="index.html#community">Community</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="index.html#resources">Resources</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login/Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="bg-light pregnancy-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="content-box">
+                        <h2>Pregnancy Nutrition</h2>
+                        <p class="lead">Nourishing You and Your Baby</p>
+                        <div class="image-button-container">
+                            <div class="img-container">
+                                <img src="images/pregnancy.jpg" alt="Pregnant Woman Eating Healthy" class="img-fluid">
+                            </div>
+                            <div class="image-bottom">
+                                <a href="pregpla.html" class="btn btn-primary custom-button">Get Pregnancy Plan</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="content-box key-nutrients">
+                        <h3>Key Nutrients for Pregnancy:</h3>
+                        <ul>
+                            <li><b>Folic Acid:</b> Prevents neural tube defects.</li>
+                            <li><b>Iron:</b> Supports increased blood volume.</li>
+                            <li><b>Calcium:</b> For baby's bone and teeth development.</li>
+                            <li><b>Omega-3s:</b> Supports brain and eye development.</li>
+                            <li><b>Protein:</b> Essential for growth and repair.</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-box food-to-include">
+                        <h3>Food to Include:</h3>
+                        <ul>
+                            <li>Leafy green vegetables</li>
+                            <li>Lean protein sources (chicken, fish, beans)</li>
+                            <li>Dairy products (yogurt, milk, cheese)</li>
+                            <li>Whole grains</li>
+                            <li>Fruits</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-box food-to-avoid">
+                        <h3>Food to Avoid:</h3>
+                        <ul>
+                            <li>High-mercury fish</li>
+                            <li>Unpasteurized dairy products</li>
+                            <li>Raw or undercooked meats</li>
+                            <li>Excessive caffeine</li>
+                            <li>Alcohol</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-box tips-for-healthy-pregnancy">
+                        <h3>Tips for a Healthy Pregnancy:</h3>
+                        <ul>
+                            <li>Take prenatal vitamins as prescribed.</li>
+                            <li>Stay hydrated.</li>
+                            <li>Manage nausea with frequent small meals.</li>
+                            <li>Avoid processed foods and sugary drinks.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>Email: info@fitforher.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                    <p>123 Main Street, Anytown USA</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <a href="#" class="me-2"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="col-md-4">
+                    <h5>Legal</h5>
+                    <a href="terms.html">Terms & Conditions</a><br>
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center">© 2024 FitForHer | Customized Nutrition for Women</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
